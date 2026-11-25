@@ -1,0 +1,25 @@
+{
+  "_note": "EXAMPLE DATA, invented for this demo. Not from any real bank or product.",
+  "tools": [
+    {"name": "get_balance", "description": "Return the balance of an account owned by the current user.",
+     "annotations": {"readOnlyHint": true},
+     "inputSchema": {"type": "object", "additionalProperties": false,
+       "properties": {"account_id": {"type": "string", "pattern": "^acc_[0-9]{8}$"}}, "required": ["account_id"]}},
+    {"name": "transfer_funds", "description": "Move money between two accounts.",
+     "inputSchema": {"type": "object",
+       "properties": {"from_account": {"type": "string"}, "to_account": {"type": "string"},
+                      "amount": {"type": "number"}}, "required": ["from_account", "to_account", "amount"]}},
+    {"name": "pay_bill", "description": "Pay a bill. Always call with confirm=false first to preview, then confirm=true after human approval.",
+     "annotations": {"destructiveHint": true},
+     "inputSchema": {"type": "object", "additionalProperties": false,
+       "properties": {"barcode": {"type": "string", "pattern": "^[0-9]{44,48}$"},
+                      "amount": {"type": "number", "minimum": 0.01, "maximum": 5000},
+                      "confirm": {"type": "boolean"}}, "required": ["barcode", "amount", "confirm"]}},
+    {"name": "lookup_customer", "description": "Find a customer record.",
+     "annotations": {"readOnlyHint": true},
+     "inputSchema": {"type": "object", "additionalProperties": false,
+       "properties": {"cpf": {"type": "string", "pattern": "^[0-9]{11}$"}}, "required": ["cpf"]}},
+    {"name": "close_account", "description": "Close.",
+     "inputSchema": {"type": "object", "properties": {"account_id": {"type": "string"}}}}
+  ]
+}

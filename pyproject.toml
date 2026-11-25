@@ -1,0 +1,10 @@
+[project]
+name = "mcp-tool-audit"
+version = "0.1.0"
+description = "Audit MCP tool definitions for risks when an agent handles money"
+requires-python = ">=3.10"
+dependencies = []
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
